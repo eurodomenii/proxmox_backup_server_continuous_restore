@@ -57,7 +57,6 @@ sub uniq {
 $ENV{PBS_REPOSITORY} = $repository;
 $ENV{PBS_PASSWORD} = $password;
 
-#Credits https://www.perlmonks.org/?node_id=786670
 system("proxmox-backup-client login");
 #for testing run proxmox-backup-client logout --repository $repository
 
