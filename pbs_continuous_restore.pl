@@ -2,10 +2,7 @@
 
 # by EuroDomenii - MIT -  2020
 # Prereq:
-# apt install jq gcc build-essential
-# perl -MCPAN -e shell
-# install Expect.pm
-# install Acme::Comment.pm
+# apt install jq
 
 use strict;
 use warnings;
@@ -62,35 +59,11 @@ sub uniq {
 }
 
 $ENV{PBS_REPOSITORY} = $repository;
+$ENV{PBS_PASSWORD} = $password;
 
 #Credits https://www.perlmonks.org/?node_id=786670
-my $login = "proxmox-backup-client login";
+system("proxmox-backup-client login");
 #for testing run proxmox-backup-client logout --repository $repository
-
-my $command = Expect->spawn($login);
-my $timeout=7200;
-
-while (
-    $command->expect($timeout,
-        -re => 'Password for', # ssh asks for a password.
-    )){
-    $command->clear_accum();
-    #print "exp_match_number ->".$command->exp_match_number."\n";
-    if( not defined($command->exp_match_number) ){
-        print "Error: output not expected, aborting connection\n";
-        #print "#### String received:\n";
-        print $command->exp_before, "\n";
-        $command->hard_close;
-        my $retval = 1;
-        print "Retval ->$retval<-\n";
-        return $retval;
-        }
-        if( $command->exp_match_number == 1 ){
-            # Looking for password
-            print $command "$password\r";
-            next;
-        }
-}
 
 my @vmids = `proxmox-backup-client snapshots --output-format=json-pretty | jq '.[] | ."backup-id"'`;
 my @filtered = uniq(@vmids);

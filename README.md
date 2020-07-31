@@ -22,10 +22,7 @@ Proxmox backup server could be installed as a standalone product, but, in order 
 ## Other packers required: 
 
 ```
-apt install jq gcc build-essential
-perl -MCPAN -e shell
-install Expect.pm
-install Acme::Comment.pm
+apt install jq
 ```
 
 ## Sample configuration
@@ -124,6 +121,7 @@ Format sample: --prefix 4
 ### From cli
 
 ```
+chmod +x /var/eurodomenii/scripts/pbs_continuous_restore/pbs_continuous_restore.pl
 root@max:/# /var/eurodomenii/scripts/pbs_continuous_restore/pbs_continuous_restore.pl --repository melania@pbs@localhost:melania --password 'Zrs$#bVn1aQKLgzA6Lc0OJTB#RMSR**qZ6!MO9KKY'
 ```
 
