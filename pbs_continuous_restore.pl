@@ -6,10 +6,6 @@
 
 use strict;
 use warnings;
-
-use Expect;
-use Acme::Comment type => 'C++';
-
 use POSIX qw(strftime);
 
 use File::Basename;
