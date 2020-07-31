@@ -181,7 +181,7 @@ root@max:/# crontab -l
 ## Todo
 * Before stopping / destroying the VM, it would be better to restore to another id. In case that production server goes down and the restoring process is too long on the standby server, there would be the option to go online with a previous restored VM. For the moment is low priority, due to the burden of keeping track of the correlation between different stages of restore, for the same VM.
 
-## Proxmox features request to improve workflow
+## Proxmox feature requests to improve workflow
 
 * Can't run multiple instances of the script with different repositories, since at the moment there's no --password command line option, but only PBS_PASSWORD environment variable, that will be overridden.
 
